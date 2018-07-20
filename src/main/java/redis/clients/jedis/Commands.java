@@ -346,6 +346,7 @@ public interface Commands {
   void bitfield(final String key, final String...arguments);
 
   void getGeotargetings(final String bucket, final double lat, final double lon);
-  void calcGeotargetings(final String bucket, final String geotargetingId, final String targetingId, final String adId,
-                         final double latitude, final double longitude, final int radius, final int queryRadius);
+  void calcGeotargetings(final String bucket, final long geotargetingId,
+                         final double latitude, final double longitude, final int radius);
+  void setPacingScore(final String bucket, final long geotargetingId, final short value);
 }
