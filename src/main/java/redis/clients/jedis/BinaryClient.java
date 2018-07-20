@@ -1351,14 +1351,17 @@ public class BinaryClient extends Connection {
     sendCommand(Command.BITFIELD, bitfieldArgs);
   }
 
-  protected void getGeotargetings(String bucket, Double latitude, Double longitude) {
+  protected void getGeotargetings(final String bucket, final Double latitude, final Double longitude) {
     sendCommand(GETGEOTARGETING, bucket.getBytes(), toByteArray(latitude), toByteArray(longitude));
   }
 
-  protected void calcGeotargetings(final String bucket, final String geotargetingId, final String targetingId,
-                                   final String adId, final double latitude, final double longitude, final int radius,
-                                   final int queryRadius) {
-    sendCommand(CALCGEOTARGETING, bucket.getBytes(), geotargetingId.getBytes(), targetingId.getBytes(), adId.getBytes(),
-            toByteArray(latitude), toByteArray(longitude), toByteArray(radius), toByteArray(queryRadius));
+  protected void calcGeotargetings(final String bucket, final long geotargetingId, final double latitude,
+                                   final double longitude, final int radius) {
+    sendCommand(CALCGEOTARGETING, bucket.getBytes(), toByteArray(geotargetingId),
+            toByteArray(latitude), toByteArray(longitude), toByteArray(radius));
+  }
+
+  protected void setPacingScore(final String bucket, final long geotargetingId, final short value) {
+    sendCommand(SETPACINGSCORE, bucket.getBytes(), toByteArray(geotargetingId), toByteArray(value));
   }
 }

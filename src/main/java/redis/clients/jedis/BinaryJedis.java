@@ -3623,10 +3623,17 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
   }
 
   @Override
-  public List<String> calcGeotargeting(String bucket, String geotargetingId, String targetingId, String adId,
-                                  double latitude, double longitude, int radius, int queryRadius) {
+  public String setPacingScore(final String bucket, final long geotargetingId, final short value) {
     checkIsInMultiOrPipeline();
-    client.calcGeotargetings(bucket, geotargetingId, targetingId, adId, latitude, longitude, radius, queryRadius);
-    return client.getMultiBulkReply();
+    client.setPacingScore(bucket, geotargetingId, value);
+    return client.getStatusCodeReply();
+  }
+
+  @Override
+  public String calcGeotargeting(String bucket, long geotargetingId,
+                                  double latitude, double longitude, int radius) {
+    checkIsInMultiOrPipeline();
+    client.calcGeotargetings(bucket, geotargetingId, latitude, longitude, radius);
+    return client.getStatusCodeReply();
   }
 }
