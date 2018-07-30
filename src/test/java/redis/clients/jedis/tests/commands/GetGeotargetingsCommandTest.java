@@ -13,10 +13,11 @@ import static org.junit.Assert.assertEquals;
 
 public class GetGeotargetingsCommandTest extends JedisCommandTestBase {
     private static final String HOST = "localhost";
-    private static final Integer PORT = 6379;
+    private static final Integer PORT = 6330;
     private static final String BUCKET = "bucket";
 
     private Jedis jedis;
+    private JedisPool jedisPool;
 
     private static final String[] geoTargetings = new String[] {
             BUCKET + " 3471 -19.769776 -43.954117 2000",
@@ -59,8 +60,10 @@ public class GetGeotargetingsCommandTest extends JedisCommandTestBase {
 
     @Before
     public void setUp() {
-        jedis = new Jedis(HOST, PORT);
-        GeoTargetingHelper calcGeoTargetingHelper = new GeoTargetingHelper(HOST, PORT, jedis);
+        jedisPool = new JedisPool(new JedisPoolConfig(), HOST, PORT);
+        jedis = jedisPool.getResource();
+        jedis.flushAll();
+        GeoTargetingHelper calcGeoTargetingHelper = new GeoTargetingHelper(jedis);
 
         for (String geoTargeting: geoTargetings) {
             assertEquals("OK", calcGeoTargetingHelper.addGeoTargeting(geoTargeting));

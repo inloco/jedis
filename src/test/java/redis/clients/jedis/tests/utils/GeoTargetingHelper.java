@@ -3,13 +3,9 @@ package redis.clients.jedis.tests.utils;
 import redis.clients.jedis.Jedis;
 
 public class GeoTargetingHelper {
-    private String host;
-    private int port;
     private Jedis jedis;
 
-    public GeoTargetingHelper(String host, int port, Jedis jedis){
-        this.host = host;
-        this.port = port;
+    public GeoTargetingHelper(Jedis jedis){
         this.jedis = jedis;
     }
 

@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 
 public class SetPacingScoreCommandTest extends JedisCommandTestBase {
     private static final String HOST = "localhost";
-    private static final Integer PORT = 6379;
+    private static final Integer PORT = 6330;
     private static final String BUCKET = "bucket";
 
     private Jedis jedis;
@@ -28,7 +28,8 @@ public class SetPacingScoreCommandTest extends JedisCommandTestBase {
     @Before
     public void setUp() {
         jedis = new Jedis(HOST, PORT);
-        GeoTargetingHelper calcGeoTargetingHelper = new GeoTargetingHelper(HOST, PORT, jedis);
+        jedis.flushAll();
+        GeoTargetingHelper calcGeoTargetingHelper = new GeoTargetingHelper(jedis);
 
         for (String geoTargeting: geoTargetings) {
             assertEquals("OK", calcGeoTargetingHelper.addGeoTargeting(geoTargeting));
