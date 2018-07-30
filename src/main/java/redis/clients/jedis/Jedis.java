@@ -3535,4 +3535,25 @@ public class Jedis extends BinaryJedis implements JedisCommands, MultiKeyCommand
     return client.getIntegerMultiBulkReply();
   }
 
+  @Override
+  public List<String> getGeotargetings(final String bucket, final Double latitude, final Double longitude) {
+    checkIsInMultiOrPipeline();
+    client.getGeotargetings(bucket, latitude, longitude);
+    return client.getMultiBulkReply();
+  }
+
+  @Override
+  public String setPacingScore(final String bucket, final long geotargetingId, final short value) {
+    checkIsInMultiOrPipeline();
+    client.setPacingScore(bucket, geotargetingId, value);
+    return client.getStatusCodeReply();
+  }
+
+  @Override
+  public String calcGeotargeting(String bucket, long geotargetingId,
+                                 double latitude, double longitude, int radius) {
+    checkIsInMultiOrPipeline();
+    client.calcGeotargetings(bucket, geotargetingId, latitude, longitude, radius);
+    return client.getStatusCodeReply();
+  }
 }
