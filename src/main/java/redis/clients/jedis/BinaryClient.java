@@ -1361,6 +1361,10 @@ public class BinaryClient extends Connection {
             toByteArray(latitude), toByteArray(longitude), toByteArray(radius));
   }
 
+  protected void deleteGeotargeting(final String bucket, final long geotargetingId) {
+    sendCommand(DELGEOTARGETING, bucket.getBytes(), toByteArray(geotargetingId));
+  }
+
   protected void setPacingScore(final String bucket, final long geotargetingId, final short value) {
     sendCommand(SETPACINGSCORE, bucket.getBytes(), toByteArray(geotargetingId), toByteArray(value));
   }

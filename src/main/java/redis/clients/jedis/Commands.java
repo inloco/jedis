@@ -349,4 +349,5 @@ public interface Commands {
   void calcGeotargetings(final String bucket, final long geotargetingId,
                          final double latitude, final double longitude, final int radius);
   void setPacingScore(final String bucket, final long geotargetingId, final short value);
+  void deleteGeotargeting(final String bucket, final long geotargetingId);
 }

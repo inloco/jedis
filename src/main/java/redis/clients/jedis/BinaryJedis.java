@@ -3630,6 +3630,13 @@ public class BinaryJedis implements BasicCommands, BinaryJedisCommands, MultiKey
   }
 
   @Override
+  public String deleteGeotargeting(final String bucket, final long geotargetingId) {
+    checkIsInMultiOrPipeline();
+    client.deleteGeotargeting(bucket, geotargetingId);
+    return client.getStatusCodeReply();
+  }
+
+  @Override
   public String calcGeotargeting(String bucket, long geotargetingId,
                                   double latitude, double longitude, int radius) {
     checkIsInMultiOrPipeline();

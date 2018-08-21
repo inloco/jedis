@@ -1141,4 +1141,9 @@ public class Client extends BinaryClient implements Commands {
   public void setPacingScore(final String bucket, final long geotargetingId, final short value) {
     super.setPacingScore(bucket, geotargetingId, value);
   }
+
+  @Override
+  public void deleteGeotargeting(final String bucket, final long geotargetingId) {
+    super.deleteGeotargeting(bucket, geotargetingId);
+  }
 }
