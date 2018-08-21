@@ -307,5 +307,6 @@ public interface BinaryJedisCommands {
 
   List<String> getGeotargetings(String bucket, Double lat, Double lon);
   String calcGeotargeting(String bucket, long geotargetingId, double latitude, double longitude, int radius);
+  String deleteGeotargeting(String bucket, long geotargetingId);
   String setPacingScore(String bucket, long geotargetingId, short value);
 }

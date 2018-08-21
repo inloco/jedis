@@ -3550,6 +3550,13 @@ public class Jedis extends BinaryJedis implements JedisCommands, MultiKeyCommand
   }
 
   @Override
+  public String deleteGeotargeting(final String bucket, final long geotargetingId) {
+    checkIsInMultiOrPipeline();
+    client.deleteGeotargeting(bucket, geotargetingId);
+    return client.getStatusCodeReply();
+  }
+
+  @Override
   public String calcGeotargeting(String bucket, long geotargetingId,
                                  double latitude, double longitude, int radius) {
     checkIsInMultiOrPipeline();
