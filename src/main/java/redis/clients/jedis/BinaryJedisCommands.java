@@ -306,7 +306,7 @@ public interface BinaryJedisCommands {
   List<byte[]> bitfield(final byte[] key, final byte[]... arguments);
 
   List<String> getGeotargetings(String bucket, Double lat, Double lon);
-  String calcGeotargeting(String bucket, String targetingId, String campaignId,
-                          double latitude, double longitude, int radius);
+  String calcGeotargeting(String bucket, String targetingId, String campaignId, double latitude, double longitude,
+                          int radius, int queryRadius);
   String addBucket(String bucket, long bucketSize, long blockSize);
 }

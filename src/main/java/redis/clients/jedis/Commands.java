@@ -346,6 +346,6 @@ public interface Commands {
   void bitfield(final String key, final String...arguments);
 
   void getGeotargetings(final String bucket, final double lat, final double lon);
-  void calcGeotargetings(final String bucket, final String targetingId, final String campaignId,
-                         final double latitude, final double longitude, final int radius);
+  void calcGeotargeting(String bucket, String targetingId, String campaignId, double latitude, double longitude,
+                        int radius, int queryRadius);
 }
