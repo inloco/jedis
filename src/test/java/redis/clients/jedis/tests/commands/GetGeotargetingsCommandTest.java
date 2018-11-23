@@ -75,7 +75,7 @@ public class GetGeotargetingsCommandTest extends JedisCommandTestBase {
 
     @Test
     public void firstQuery() {
-        Set<String> result = new HashSet<>(jedis.getGeotargetings(BUCKET, -19.75644, -43.94415, 100));
+        Set<String> result = new HashSet<>(jedis.getGeotargetings(BUCKET, -19.75644, -43.94415));
         Set<String> expected = new HashSet<String>() {{
             add("5ab02d2bda651c000c003473 5ab02d2bda651c000c00344e AD_ID -19.745828 -43.93678 500");
             add("5ab02d2bda651c000c003471 5ab02d2bda651c000c00344e AD_ID -19.769776 -43.954117 500");
@@ -85,7 +85,7 @@ public class GetGeotargetingsCommandTest extends JedisCommandTestBase {
 
     @Test
     public void secondQuery() {
-        Set<String> result = new HashSet<>(jedis.getGeotargetings(BUCKET, -19.77369, -43.96599, 100));
+        Set<String> result = new HashSet<>(jedis.getGeotargetings(BUCKET, -19.77369, -43.96599));
         Set<String> expected = new HashSet<String>() {{
             add("5ab02d2bda651c000c003471 5ab02d2bda651c000c00344e AD_ID -19.769776 -43.954117 500");
             add("5ab02d2bda651c000c003472 5ab02d2bda651c000c00344e AD_ID -19.777717 -43.982016 500");
@@ -95,13 +95,13 @@ public class GetGeotargetingsCommandTest extends JedisCommandTestBase {
 
     @Test
     public void givenCoordinatesWithMultipleResults_shouldRespectMaximumResponseLengthParamter() {
-        List<String> result = jedis.getGeotargetings(BUCKET, -12.93715, -38.41044, 1);
+        List<String> result = jedis.getGeotargetings(BUCKET, -12.93715, -38.41044);
         assertEquals(result.size(), 1);
     }
 
     @Test
     public void thirdQuery() {
-        Set<String> result = new HashSet<>(jedis.getGeotargetings(BUCKET, -12.93715, -38.41044, 100));
+        Set<String> result = new HashSet<>(jedis.getGeotargetings(BUCKET, -12.93715, -38.41044));
         Set<String> expected = new HashSet<String>() {{
             add("5ac404343b3cb4000c00eca4 5ac404343b3cb4000c00ec9e AD_ID -12.9817592 -38.4642495 500");
             add("5ac404323b3cb4000c00ead2 5ac4042f3b3cb4000c00e9b7 AD_ID -12.934989 -38.3925794 500");
