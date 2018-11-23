@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 	<groupId>com.inloco</groupId>
 	<artifactId>jedis</artifactId>
-	<version>inloco-2.11.0</version>
+	<version>inloco-2.12.0</version>
 	<name>Jedis</name>
 	<description>Jedis is a blazingly small and sane Redis java client.</description>
   <url>https://github.com/inloco/jedis</url>
@@ -31,7 +31,6 @@
     <connection>scm:git:git@github.com:inloco/jedis.git</connection>
     <url>scm:git:git@github.com:inloco/jedis.git</url>
     <developerConnection>scm:git:git@github.com:inloco/jedis.git</developerConnection>
-    <tag>inloco-2.9.0</tag>
   </scm>
 
 	<properties>
