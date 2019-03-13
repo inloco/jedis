@@ -1146,4 +1146,9 @@ public class Client extends BinaryClient implements Commands {
   public void deleteGeotargeting(final String bucket, final long geotargetingId) {
     super.deleteGeotargeting(bucket, geotargetingId);
   }
+
+  @Override
+  public void getAllGeotargetings(final String bucket) {
+    super.getAllGeotargetings(bucket);
+  }
 }

@@ -3563,4 +3563,11 @@ public class Jedis extends BinaryJedis implements JedisCommands, MultiKeyCommand
     client.calcGeotargetings(bucket, geotargetingId, latitude, longitude, radius);
     return client.getStatusCodeReply();
   }
+
+  @Override
+  public List<String> getAllGeotargetings(final String bucket) {
+    checkIsInMultiOrPipeline();
+    client.getAllGeotargetings(bucket);
+    return client.getMultiBulkReply();
+  }
 }
