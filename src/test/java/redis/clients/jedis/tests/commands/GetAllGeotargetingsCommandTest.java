@@ -45,7 +45,7 @@ public class GetAllGeotargetingsCommandTest extends JedisCommandTestBase {
     }
 
     @Test
-    public void checkDeletedGeoTargetings() {
+    public void checkGetAllGeoTargetings() {
         Set<String> result = new HashSet<>(calcGeoTargetingHelper.getAllGeotargetings(BUCKET));
         Set<String> expected = new HashSet<String>(){{
             for(String geotargeting : geoTargetings){
