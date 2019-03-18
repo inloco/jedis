@@ -22,9 +22,9 @@ public class GetAllGeotargetingsCommandTest extends JedisCommandTestBase {
     private GeoTargetingHelper calcGeoTargetingHelper;
 
     private static final String[] geoTargetings = new String[] {
-        BUCKET + " 100 -19.769776 -43.954117 2000",
-        BUCKET + " 200 -21.757717 -33.962016 2000",
-        BUCKET + " 300 -31.745828 -22.93678 2000",
+        BUCKET + " 100 -19.769776 -43.954117 2000 100",
+        BUCKET + " 200 -21.757717 -33.962016 2000 100",
+        BUCKET + " 300 -31.745828 -22.93678 2000 100",
     };
 
     @Before
@@ -46,18 +46,23 @@ public class GetAllGeotargetingsCommandTest extends JedisCommandTestBase {
 
     @Test
     public void checkGetAllGeoTargetings() {
-        Set<String> result = new HashSet<>(calcGeoTargetingHelper.getAllGeotargetings(BUCKET));
+        Set<String> result = new HashSet<>(jedis.getAllGeotargetings(BUCKET));
         Set<String> expected = new HashSet<String>(){{
             for(String geotargeting : geoTargetings){
-                String[] args = geotargeting.split(" ");
-                Long geotargetingId = Long.parseLong(args[1]);
-                Double latitude = Double.parseDouble(args[2]);
-                Double longitude = Double.parseDouble(args[3]);
-                Integer radius = Integer.parseInt(args[4]);
-                add(geotargetingId + " " + latitude + " " + longitude + " " + radius);
+                add(getGeoTargetingWithoutBucket(geotargeting));
             }
         }};
 
         assertEquals(expected, result);
+    }
+
+    private String getGeoTargetingWithoutBucket(String geoTargeting) {
+        String[] args = geoTargeting.split(" ");
+        Long geotargetingId = Long.parseLong(args[1]);
+        Double latitude = Double.parseDouble(args[2]);
+        Double longitude = Double.parseDouble(args[3]);
+        Integer radius = Integer.parseInt(args[4]);
+        Integer score = Integer.parseInt(args[5]);
+        return geotargetingId + " " + latitude + " " + longitude + " " + radius + " " + score;
     }
 }
