@@ -1,7 +1,5 @@
 package redis.clients.jedis.tests.utils;
 
-import java.util.ArrayList;
-import java.util.List;
 import redis.clients.jedis.Jedis;
 
 public class GeoTargetingHelper {
