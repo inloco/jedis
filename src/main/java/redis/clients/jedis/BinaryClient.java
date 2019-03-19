@@ -1368,4 +1368,8 @@ public class BinaryClient extends Connection {
   protected void setPacingScore(final String bucket, final long geotargetingId, final short value) {
     sendCommand(SETPACINGSCORE, bucket.getBytes(), toByteArray(geotargetingId), toByteArray(value));
   }
+
+  protected void getAllGeotargetings(final String bucket) {
+    sendCommand(DUMPALLGEOTARGETINGS, bucket.getBytes());
+  }
 }
